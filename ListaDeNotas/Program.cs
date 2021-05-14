@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ListaDeNotas
 {
@@ -120,6 +121,71 @@ namespace ListaDeNotas
                     lista_alunos[posicao].Media
                 );
             }
+
+
+            // Como faço para alterar uma nota?
+            Console.WriteLine("Vamos alterar a nota de um aluno.");
+            Console.WriteLine("Informe a posição do aluno:");
+            int posicao_informada = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Vamos alterar a nota de {0} ", lista_alunos[posicao_informada].Nome);
+            Console.WriteLine("Informe a nova Nota do Trabalho, nota atual: {0}", lista_alunos[posicao_informada].Trabalho);
+            lista_alunos[posicao_informada].Trabalho = Convert.ToDouble(Console.ReadLine());
+            
+            Console.WriteLine("Informe a nova Nota do Exercício, nota atual: {0}", lista_alunos[posicao_informada].Exercicios);
+            lista_alunos[posicao_informada].Exercicios = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Informe a nova Nota do Prova, nota atual: {0}", lista_alunos[posicao_informada].Prova);
+            lista_alunos[posicao_informada].Prova = Convert.ToDouble(Console.ReadLine());
+
+
+            for (int posicao = 0; posicao < lista_alunos.Count; posicao++)
+            {
+                Console.WriteLine(
+                    "Aluno na posição {0} é {1} com a média {2} ",
+                    posicao,
+                    lista_alunos[posicao].Nome,
+                    lista_alunos[posicao].Media
+                );
+            }
+
+
+            // Como faço para remover um aluno?
+            Console.WriteLine("Vamos remover um aluno");
+            Console.WriteLine("Informe a posição do aluno:");
+            posicao_informada = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Vamos REMOVER o {0} do sistema ", lista_alunos[posicao_informada].Nome);
+            lista_alunos.RemoveAt(posicao_informada);
+
+
+            for (int posicao = 0; posicao < lista_alunos.Count; posicao++)
+            {
+                Console.WriteLine(
+                    "Aluno na posição {0} é {1} com a média {2} ",
+                    posicao,
+                    lista_alunos[posicao].Nome,
+                    lista_alunos[posicao].Media
+                );
+            }
+
+
+            // Qual foi a média da turma?
+            // Vamos a LINQ
+            Console.WriteLine("Média da Turma");
+            double soma_todas_as_medias = lista_alunos.Sum(posicao => posicao.Media);
+
+            double media_sala = soma_todas_as_medias / lista_alunos.Count;
+
+            Console.WriteLine("A média da Turma é {0} ", media_sala);
+
+
+            Console.WriteLine("Busca de Aluno");
+            string nome_buscado = Console.ReadLine();
+
+            Aluno resultado = lista_alunos.FirstOrDefault(posicao => posicao.Nome == nome_buscado);
+
+            Console.WriteLine("Aluno encontrado: {0} ", resultado.Nome);
+            Console.WriteLine("Média: {0} ", resultado.Media);
 
             Console.ReadKey();
         }

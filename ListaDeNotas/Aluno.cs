@@ -15,5 +15,7 @@ namespace ListaDeNotas
         { 
             get => (Trabalho+Prova+Exercicios)/3; 
         }
+
+
     }
 }
